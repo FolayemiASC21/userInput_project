@@ -1,3 +1,6 @@
+let form = document.querySelector("#form")
+let Header = document.querySelector("h1")
+
 let usernameInput = document.querySelector("#username")
 let passwordInput = document.querySelector("#password")
 let submitButton = document.querySelector("#submit-button")
@@ -10,9 +13,12 @@ let body = document.querySelector("body")
 let username;
 let password;
 
+let tryNumber = 0
+
 submitButton.onclick = function(event) {
     event.preventDefault()
 
+    tryNumber+= 1
 
     username = usernameInput.value
     password = passwordInput.value
@@ -39,4 +45,12 @@ submitButton.onclick = function(event) {
 
     usernameInput.value = ""
     passwordInput.value = null
+
+    if (tryNumber == 3 && error.style.display == "block") {
+        form.style.display = "none"
+        error.style.display = "none"
+        Header.style.textAlign = "center"
+        Header.style.color = "red"
+        Header.innerHTML = "You are locked OUT!"
+    }
 }
